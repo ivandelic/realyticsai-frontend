@@ -2,4 +2,4 @@ This repository is comprised of micro-frontend projects for Tax Analytics protot
 
 ## micro-frontends:
 
-### ta-taxpayer-inisght
+### realyticsai-demo
