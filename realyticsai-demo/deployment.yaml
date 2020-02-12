@@ -34,15 +34,26 @@ spec:
       containers:
         -
           name: realyticsai-frontend
-          image: 'eu-frankfurt-1.ocir.io/oraseemeaceeociworkshop/ivandelic/hep/realyticsai-frontend:latest'
+          image: 'eu-frankfurt-1.ocir.io/oraseemeaceeociworkshop/ivandelic/realyticsai/realyticsai-frontend:latest'
           imagePullPolicy: Always
           ports:
             -
               containerPort: 3000
           env:
-            -
-              name: REACT_APP_API_URL
+            - name: REACT_APP_API_URL
               value: http://realyticsai-backend.micro.ivandelic.com
+            - name: REACT_APP_OBP_RESTPROXY1_ADDRESS
+              value: https://1DF8C89030BF4AE39AFD38679326BE69.blockchain.ocp.oraclecloud.com:443/restproxy1/bcsgw/rest/v1/transaction/invocation
+            - name: REACT_APP_OBP_RESTPROXY1_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: obp-restproxy1
+                  key: username
+            - name: REACT_APP_OBP_RESTPROXY1_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: obp-restproxy1
+                  key: password
       imagePullSecrets:
         -
           name: ocirsecret
