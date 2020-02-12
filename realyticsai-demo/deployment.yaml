@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: tesla-frontend-service
+  name: realyticsai-frontend-service
   labels:
-    app: tesla-frontend
+    app: realyticsai-frontend
 spec:
   type: LoadBalancer
   selector:
-    app: tesla-frontend
+    app: realyticsai-frontend
   ports:
     -
       port: 80
@@ -17,24 +17,24 @@ spec:
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: tesla-frontend-deployment
+  name: realyticsai-frontend-deployment
   labels:
-    app: tesla-frontend
+    app: realyticsai-frontend
 spec:
   selector:
     matchLabels:
-      app: tesla-frontend
+      app: realyticsai-frontend
   replicas: 1
   template:
     metadata:
       labels:
-        app: tesla-frontend
+        app: realyticsai-frontend
         version: v1
     spec:
       containers:
         -
-          name: tesla-frontend
-          image: 'eu-frankfurt-1.ocir.io/oraseemeaceeociworkshop/ivandelic/hep/tesla-frontend:latest'
+          name: realyticsai-frontend
+          image: 'eu-frankfurt-1.ocir.io/oraseemeaceeociworkshop/ivandelic/hep/realyticsai-frontend:latest'
           imagePullPolicy: Always
           ports:
             -
@@ -42,7 +42,7 @@ spec:
           env:
             -
               name: REACT_APP_API_URL
-              value: http://tesla-backend.ivandelic.com
+              value: http://realyticsai-backend.micro.ivandelic.com
       imagePullSecrets:
         -
           name: ocirsecret

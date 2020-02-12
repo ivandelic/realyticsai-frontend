@@ -1,5 +1,5 @@
 FROM node:12.2.0-alpine
-WORKDIR /tesla
+WORKDIR /realytics
 COPY . ./
 RUN npm install
 EXPOSE 3000
