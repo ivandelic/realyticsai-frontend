@@ -6,6 +6,7 @@ import SideMenu from './component/navigation/SideMenu';
 import TopMenu from './component/navigation/TopMenu';
 import Lgu from './page/Lgu';
 import Home from './page/Home';
+import Transaction from "./page/Transaction";
 import './theme/default/style.css';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -21,7 +22,7 @@ ReactDOM.render(
             <div className="tesla-wrapper max-height">
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/lgu" component={Lgu}></Route>
-                <Route path="/settings" component={Lgu}></Route>
+                <Route path="/transaction" component={Transaction}></Route>
             </div>
         </div>
     </BrowserRouter>

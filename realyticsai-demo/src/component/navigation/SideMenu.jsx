@@ -21,7 +21,7 @@ class SideMenu extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/settings">
+                        <Link to="/transaction">
                             <span className="pi fa-fw pi-globe" title="Settings"></span>
                         </Link>
                     </li>
