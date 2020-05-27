@@ -75,11 +75,11 @@ class PropertyTransaction extends Component {
                     </div>
                     <div className="p-col-12">
                         <h2>Properties</h2>
-                        <div>{'' + (!!this.props.propertyList ?  this.props.propertyList : 'none')}</div>
+                        <div>{'' + (!!this.state.propertyList ?  this.state.propertyList : 'none')}</div>
                     </div>
                     <div className="p-col-12">
                         <h2>Money Balance</h2>
-                        <div>{'' + (!!this.props.money ?  this.props.money : 'none')}</div>
+                        <div>{'' + (!!this.state.money ?  this.state.money : 'none')}</div>
                     </div>
                     <div className="wc-button-container p-col-12">
                     </div>
