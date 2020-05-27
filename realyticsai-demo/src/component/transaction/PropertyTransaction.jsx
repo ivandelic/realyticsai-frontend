@@ -4,14 +4,17 @@ import {Card} from 'primereact/card';
 import {InputText} from 'primereact/inputtext';
 import PropTypes from 'prop-types';
 import { Binding } from '../../utils/Util'
+import {TransactionService} from '../../service/TransactionService'
 
 class PropertyTransaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
             pin: this.props.pin,
-            propertyList: this.props.propertyList
+            propertyList: this.props.propertyList,
+            money: 0
         }
+        this.service = new TransactionService();
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -23,9 +26,26 @@ class PropertyTransaction extends Component {
         return {};
     }
 
-    binding(object, node, e) {
+    loadData() {
+        this.service.listProperties(this.state.pin).then(p => {
+            if (!!p.result) {
+                this.setState({ 
+                    propertyList: p.result.payload
+                });
+            }
+        });
+        this.service.moneyQuery(this.state.pin).then(p => {
+            if (!!p.result) {
+                this.setState({ 
+                    money: p.result.payload
+                });
+            }
+        });
+    }
+
+    binding(event) {
         this.setState({
-            pin: Binding.updateByString.bind(null, object, node, e.target.value).call()
+            pin: event.target.value
         });
     }
 
@@ -33,13 +53,21 @@ class PropertyTransaction extends Component {
         return (
             <Card title="Identification" className="wc">
                 <div className="p-grid">
-                    <div className="p-col-12">
+                    <div className="p-col-10">
                         <h2>OIB</h2>
                         <InputText
                             id="name"
                             type="text"
                             value={this.state.pin}
-                            onChange={this.binding.bind(this, this.state, 'pin')}
+                            onChange={this.binding.bind(this)}
+                        />
+                    </div>
+                    <div className="p-col-2">
+                        <Button 
+                            className="p-button-raised"
+                            style={{marginTop: 1.5 + 'em'}}
+                            icon="pi pi-refresh"
+                            onClick={this.loadData.bind(this)}
                         />
                     </div>
                     <div className="p-col-12">
@@ -48,6 +76,10 @@ class PropertyTransaction extends Component {
                     <div className="p-col-12">
                         <h2>Properties</h2>
                         <div>{'' + (!!this.props.propertyList ?  this.props.propertyList : 'none')}</div>
+                    </div>
+                    <div className="p-col-12">
+                        <h2>Money Balance</h2>
+                        <div>{'' + (!!this.props.money ?  this.props.money : 'none')}</div>
                     </div>
                     <div className="wc-button-container p-col-12">
                     </div>

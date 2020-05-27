@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {TransactionService} from '../service/TransactionService'
 import PropertyTransaction from "../component/transaction/PropertyTransaction";
 
 class Transaction extends Component {
@@ -11,31 +10,6 @@ class Transaction extends Component {
             propertyList1: "",
             propertyList2: ""
         }
-        this.service = new TransactionService();
-    }
-
-    componentWillMount() {
-        this.loadData();
-    }
-
-    loadData() {
-        this.service.listProperties(this.state.pin1).then(p => {
-            if (!!p.result) {
-                this.setState({ 
-                    propertyList1: p.result.payload
-                });
-            }
-        });
-        this.service.listProperties(this.state.pin2).then(p => {
-            if (!!p.result) {
-                this.setState({ 
-                    propertyList2: p.result.payload
-                });
-            }
-        });
-    }
-
-    onDataItemSelectEvent(item) {
     }
 
     render() {

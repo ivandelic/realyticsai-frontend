@@ -5,7 +5,7 @@ class TopMenu extends Component {
     render() {
         return (
             <nav className="tesla-bar tesla-bar-top">
-                <h1 className="tesla-headline tesla-pull-left">RealyticsAI</h1>
+                <h1 className="tesla-headline tesla-pull-left">#17 Java Zagreb Meetup</h1>
                 <ul className="tesla-menu tesla-menu-icon tesla-menu-icon-horizontal">
                     <li>
                         <Link to="/">
