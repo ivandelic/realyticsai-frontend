@@ -18,6 +18,10 @@ class PropertyTransaction extends Component {
     }
 
     loadData() {
+        this.setState({ 
+            propertyList: '',
+            money: 0
+        });
         this.service.listProperties(this.state.pin).then(p => {
             if (!!p.result) {
                 this.setState({ 
