@@ -6,7 +6,7 @@ import {InputText} from 'primereact/inputtext';
 import PropTypes from 'prop-types';
 import { Binding } from '../../utils/Util'
 
-class LguDetail extends Component {
+class OfficeDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,11 +40,11 @@ class LguDetail extends Component {
             <Card title="Identification" className="wc">
                 <div className="p-grid">
                     <div className="p-col-12 p-md-6">
-                        <h2>Name</h2>
+                        <h2>Office Name</h2>
                         <InputText
-                            id="name"
+                            id="officeName"
                             type="text"
-                            value={this.state.lgu.name}
+                            value={this.state.lgu.name || ''}
                             onChange={this.binding.bind(this, this.state.lgu, 'name')}
                         />
                     </div>
@@ -74,6 +74,9 @@ class LguDetail extends Component {
                         />
                     </div>
                     <div className="wc-button-container p-col-12">
+                        {!!this.state.lgu.id && 
+                            <Button label="Delete" className="p-button-raised" icon="pi pi-minus" onClick={this.props.onDataItemRemove.bind(null, this.state.lgu)} />
+                        }
                         <Button label="Save" className="p-button-raised" icon="pi pi-check" onClick={this.props.onDataItemSave.bind(null, this.state.lgu)} />
                     </div>
                 </div>
@@ -82,7 +85,7 @@ class LguDetail extends Component {
     }
 }
 
-LguDetail.propTypes = {
+OfficeDetail.propTypes = {
     lgu: PropTypes.object,
     lguStatus: PropTypes.array,
     lguCounties: PropTypes.array,
@@ -90,9 +93,9 @@ LguDetail.propTypes = {
     onDataItemRemove: PropTypes.func
 }
 
-LguDetail.defaultProps = {
+OfficeDetail.defaultProps = {
     lgu: {},
     lguCounties: ['No data']
 }
 
-export default LguDetail;
+export default OfficeDetail;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import LguDetail from '../component/lgu/LguDetail'
+import OfficeDetail from '../component/lgu/OfficeDetail'
+import LguStats from '../component/lgu/LguStats'
 import SimpleDataView from '../component/table/SimpleDataView'
-import {LguService} from '../service/LguService'
-import LguStats from "../component/lgu/LguStats";
+import {OfficeService} from '../service/OfficeService'
 
-class Lgu extends Component {
+class Offices extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ class Lgu extends Component {
             lgu: {},
             lguCounties: []
         }
-        this.service = new LguService();
+        this.service = new OfficeService();
     }
 
     componentWillMount() {
@@ -44,15 +44,19 @@ class Lgu extends Component {
         this.setState({ 
             lgu: {
                 name: '',
-                pin: null,
-                registrationNumber: null,
-                vatId: '',
-                address: ''
+                lguCounty: {},
+                status: 'City',
             }
         });
     }
 
     onDataItemSaveEvent(item) {
+        this.service.saveItem(item).then(p => {
+            this.setState({ 
+                lgu: p
+            });
+            this.refreshData();
+        });
     }
 
     onDataItemSelectEvent(item) {
@@ -60,6 +64,12 @@ class Lgu extends Component {
     }
 
     onDataItemRemoveEvent(item) {
+        this.service.deleteItem(item.id).then(p => {
+            this.setState({ 
+                lgu: {}
+            });
+            this.refreshData();
+        });
     }
 
     render() {
@@ -75,7 +85,7 @@ class Lgu extends Component {
                 </div>
                 {!(Object.keys(this.state.lgus).length === 0 && this.state.lgus.constructor === Object) && 
                     <div className="p-col-12 p-md-6 p-lg-9">
-                        <LguDetail 
+                        <OfficeDetail 
                             lgu={this.state.lgu}
                             lguCounties={this.state.lguCounties}
                             onDataItemSave={this.onDataItemSaveEvent.bind(this)}
@@ -93,4 +103,4 @@ class Lgu extends Component {
     }
 }
 
-export default Lgu;
+export default Offices;

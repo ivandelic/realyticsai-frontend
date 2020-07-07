@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import SideMenu from './component/navigation/SideMenu';
 import TopMenu from './component/navigation/TopMenu';
-import Lgu from './page/Lgu';
+import Offices from './page/Offices';
 import Home from './page/Home';
 import Transaction from "./page/Transaction";
-import './theme/default/style.css';
+import './theme/erste/style.css';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primeflex/primeflex.css';
@@ -21,7 +21,7 @@ ReactDOM.render(
             <SideMenu></SideMenu>
             <div className="tesla-wrapper max-height">
                 <Route path="/" exact component={Home}></Route>
-                <Route path="/lgu" component={Lgu}></Route>
+                <Route path="/offices" component={Offices}></Route>
                 <Route path="/transaction" component={Transaction}></Route>
             </div>
         </div>

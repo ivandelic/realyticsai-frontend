@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
-import logo from'../../theme/default/logo.png';
+import logo from'../../theme/erste/logo.png';
 
 class SideMenu extends Component {
     render() {
@@ -16,8 +16,8 @@ class SideMenu extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/lgu">
-                            <span className="pi fa-fw pi-star" title="LGU Insight"></span>
+                    <Link to="/offices">
+                            <span className="pi fa-fw pi-star" title="Offices"></span>
                         </Link>
                     </li>
                     <li>

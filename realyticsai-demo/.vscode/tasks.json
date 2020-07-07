@@ -9,6 +9,15 @@
             "problemMatcher": [
                 "$node-sass"
             ]
+        },
+        {
+            "label": "Sass Compile Erste",
+            "type": "shell",
+            "command": "node-sass.cmd src\\theme\\erste\\style.scss src\\theme\\erste\\style.css",
+            "group": "build",
+            "problemMatcher": [
+                "$node-sass"
+            ]
         }
     ]
 }
